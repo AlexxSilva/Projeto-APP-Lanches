@@ -1,5 +1,4 @@
 ﻿using AppLanchesAPI.Domain;
-using AppLanchesAPI.Repositorio.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace AppLanchesAPI.Repositorio
 {
-    public class ProdutosRepository : IProduto
+    public class LanchesRepository : ILanchesRepository
     {
 
         private readonly AppLanchesContext _context;
 
-        public ProdutosRepository(AppLanchesContext context)
+        public LanchesRepository(AppLanchesContext context)
         {
             this._context = context;
         }
@@ -42,6 +41,11 @@ namespace AppLanchesAPI.Repositorio
         {
             IQueryable<Produto> query = _context.Produtos;
             return await query.ToArrayAsync();
+        }
+
+        public Task<Componente[]> GetAllComponenteAsync(int Produto_Id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
